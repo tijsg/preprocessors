@@ -1,3 +1,4 @@
+import re
 import urllib.parse
 
 class TextPreprocessor:
@@ -8,9 +9,13 @@ class TextPreprocessor:
         while prev_decoded_text != decoded_text:
             prev_decoded_text = decoded_text
             decoded_text = urllib.parse.unquote(decoded_text)
-            if decoded_text == prev_decoded_text:
-                break
         return decoded_text
+    
+    @staticmethod
+    def remove_urls(input_text):
+        url_pattern = re.compile(r'(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})(\.[a-zA-Z0-9]{2,})?')
+        modified_text = url_pattern.sub(':url:', input_text)
+        return modified_text
     
     @staticmethod
     def preprocess(input_text):
