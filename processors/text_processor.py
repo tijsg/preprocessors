@@ -96,7 +96,6 @@ class TextProcessor:
     def process(input_text):
         if input_text:
             processed = input_text
-            # Clean up / removal steps
             processed = TextProcessor.url_decode(processed)
             processed = TextProcessor.normalize_laughter(processed)
             processed = TextProcessor.remove_multiple_spaces(processed)
@@ -106,10 +105,8 @@ class TextProcessor:
             processed = TextProcessor.remove_spaces_before_punctuation(processed)
             processed = TextProcessor.add_space_after_punctuation(processed)
             processed = TextProcessor.remove_leading_trailing_spaces(processed)
-            # Styling steps
             processed = TextProcessor.uppercase_after_punctuation(processed)
             processed = TextProcessor.capitalize_first_letter(processed)
-            # Augmentation
             processed = TextProcessor.substitute_emojis(processed)
             processed = TextProcessor.dot_at_end_unless_punctuated(processed)
         else:
