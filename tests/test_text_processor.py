@@ -1,4 +1,4 @@
-from textprocessors.text_processor import TextProcessor
+from textprocessors import TextProcessor
 
 def test_url_decode():
     decoded_text = TextProcessor.url_decode("Hello%25252520world%25252521")
