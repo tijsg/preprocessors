@@ -23,3 +23,7 @@ def test_replace_consecutive_punctuation():
 def test_preprocess():
     preprocessed_text = TextProcessor.process(" hello%25252520world%25252521 ???!!!!!???how are you??? 😎")
     assert preprocessed_text == "Hello world! How are you? :smiling face with sunglasses:"
+    preprocessed_text = TextProcessor.process("       this is%20absolutely%20horrible%20  text😠!!!! !!??? ?    that needs to be   cleaned up         ")
+    assert preprocessed_text == "This is absolutely horrible text :angry face: ! That needs to be cleaned up."
+    preprocessed_text = TextProcessor.process("This is a test : will it pass?")
+    assert preprocessed_text == "This is a test: will it pass?"

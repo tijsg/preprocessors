@@ -88,9 +88,33 @@ class TextProcessor:
         return re.sub(r'\s*([^\w\s])\s*', r'\1', input_text)
     
     @staticmethod
-    def add_space_after_punctuation(input_string):
-        return re.sub(r'([^\w\s])(?![\s])', r'\1 ', input_string)
-       
+    def add_space_after_punctuation(input_text):
+        return re.sub(r'([^\w\s])(?![\s])', r'\1 ', input_text)
+    
+    @staticmethod
+    def process_emoji_descriptions(text):
+        # Define a regular expression pattern to match emoji descriptions
+        pattern = r'(:[a-z\s]+\S+:)'
+
+        # Find all matches of the pattern in the text
+        matches = re.findall(pattern, text)
+        # Process each match
+        for match in matches:
+            # Find the index of the match in the text
+            index = text.index(match)
+
+            # Add a space before the emoji description if needed
+            if (index > 0) and (text[index-1] != ' '):
+                text = text[:index] + ' ' + text[index:]
+
+            # Add a space after the emoji description if needed
+            if (index + len(match) +1 < len(text)):
+                if text[index + len(match) +1] not in string.punctuation and text[index + len(match) +1] != ' ':
+                    text = text[:index + len(match) +1] + ' ' + text[index + len(match) +1:]
+
+        return text
+
+
 
     @staticmethod
     def process(input_text):
@@ -108,6 +132,7 @@ class TextProcessor:
             processed = TextProcessor.uppercase_after_punctuation(processed)
             processed = TextProcessor.capitalize_first_letter(processed)
             processed = TextProcessor.substitute_emojis(processed)
+            processed = TextProcessor.process_emoji_descriptions(processed)
             processed = TextProcessor.dot_at_end_unless_punctuated(processed)
         else:
             processed = ""
