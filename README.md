@@ -1,4 +1,6 @@
-# Text processors
+# Processors
+
+This repo groups together preprocessing and postprocessing functions to allow easy clean up of data.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
