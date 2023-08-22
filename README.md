@@ -7,8 +7,8 @@ This repo groups together preprocessing and postprocessing functions to allow ea
 ## Usage
 
 ```python
-from texprocessors import TextProcessor
+from processors import TextProcessor
 process = TextProcessor()
 processor.process("       this is%20absolutely%20horrible%20  text 😠!!!! !!??? ?    that needs to be   cleaned up         ")
-'This is absolutely horrible text:angry face: ! That needs to be cleaned up.'
+'This is absolutely horrible text :angry face: ! That needs to be cleaned up.'
 ```
